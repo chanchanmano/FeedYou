@@ -46,7 +46,7 @@ class UserManager(BaseUserManager):
         return user
 
 
-class User(AbstractBaseUser):
+class User(AbstractBaseUser, GenericModel):
     """Defines the user model for foodline's users"""
 
     CUSTOMER = 1

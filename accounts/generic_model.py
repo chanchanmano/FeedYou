@@ -17,4 +17,14 @@ class GenericModel(models.Model):
         using: str | None = ...,
         update_fields: Iterable[str] | None = ...,
     ) -> None:
-        return super().save(force_insert, force_update, using, update_fields)
+        self.before_save()
+        super().save(force_insert, force_update, using, update_fields)
+        self.after_save()
+
+    def after_save(self, *args, **kwargs) -> None:
+        """Override this method in model to control after save"""
+        pass
+
+    def before_save(self, *args, **kwargs) -> None:
+        """Override this method in model to control before save"""
+        pass
